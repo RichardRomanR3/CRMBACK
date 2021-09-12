@@ -48,7 +48,7 @@ namespace Aplicacion.ACCIONCAMPANAS {
                 if (valor > 0) {
                     return Unit.Value;
                 }
-                throw new Exception ("No se guardo lpm");
+                throw new Exception ("No se guardaron los datos");
             }
         }
     }

@@ -33,6 +33,8 @@ namespace Aplicacion.ACCIONTAREAS {
             public string UserName {get;set;}
             public string AsignadorId{get;set;}
             public Guid? POSIBLECLIENTEId {get;set;}
+
+            public COMENTARIOSDETAREAS[] COMENTARIOSDETAREAS {get;set;}
         }
         public class Manejador : IRequestHandler<Ejecuta> {
             private readonly CRMContext _context;
@@ -104,11 +106,12 @@ namespace Aplicacion.ACCIONTAREAS {
                         contd++;
                     }
                 }
+         
                 var valor = await _context.SaveChangesAsync ();
                 if (valor > 0) {
                     return Unit.Value;
                 }
-                throw new Exception ("No se guardo lpm");
+                throw new Exception ("No se guardaron los datos");
             }
         }
     }

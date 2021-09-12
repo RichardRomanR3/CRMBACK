@@ -64,5 +64,7 @@ namespace Persistencia {
         public DbSet<ALERTAS> ALERTAS { get; set; }
         public DbSet<V_ARCHIVOS_CLIENTES> V_ARCHIVOS_CLIENTES {get;set;}
         public DbSet<V_ARCHIVOS_POSIBLESCLIENTES> V_ARCHIVOS_POSIBLESCLIENTES {get;set;}
+
+        public DbSet <COMENTARIOSDETAREAS> COMENTARIOSDETAREAS {get;set;}
     }
 }

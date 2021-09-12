@@ -12,8 +12,8 @@ namespace Persistencia
         {
             if(!usuarioManager.Users.Any())
             {
-                var usuario = new Usuarios{Id = Guid.NewGuid().ToString(),NOMBRECOMPLETO = "ADMIN", UserName="Tileria",Email="tileria@tileria.com.py"};
-                await usuarioManager.CreateAsync(usuario,"Tileria/2020");
+                var usuario = new Usuarios{Id = Guid.NewGuid().ToString(),NOMBRECOMPLETO = "ADMIN", UserName="Admin",Email="admin@admin.com"};
+                await usuarioManager.CreateAsync(usuario,"Admin/2021");
             }
         }
     }
