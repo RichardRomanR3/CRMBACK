@@ -12,18 +12,20 @@ namespace Aplicacion.ACCIONTAREAS
 {
     public class ListarComentariosDeTarea
     {
-        public class Ejecuta : IRequest<List<COMENTARIOSDETAREAS>>{
-            public Guid TAREA_Id{get;set;}
+        public class Ejecuta : IRequest<List<COMENTARIOSDETAREAS>>
+        {
+            public Guid TAREA_Id { get; set; }
             public class Manejador : IRequestHandler<Ejecuta, List<COMENTARIOSDETAREAS>>
             {
                 private readonly CRMContext _context;
-                public Manejador(CRMContext context){
-_context=context;
+                public Manejador(CRMContext context)
+                {
+                    _context = context;
                 }
                 public async Task<List<COMENTARIOSDETAREAS>> Handle(Ejecuta request, CancellationToken cancellationToken)
                 {
-                   var lista = await _context.COMENTARIOSDETAREAS.Where(x=>x.TAREAId == request.TAREA_Id).OrderByDescending(x=>x.FECGRA).ToListAsync();
-                   return lista;
+                    var lista = await _context.COMENTARIOSDETAREAS.Where(x => x.TAREAId == request.TAREA_Id).OrderByDescending(x => x.FECGRA).ToListAsync();
+                    return lista;
                 }
             }
         }

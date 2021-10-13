@@ -4,6 +4,7 @@ using Aplicacion.ACCIONARCHIVOS;
 using Aplicacion.ACCIONCAMPANAS;
 using Aplicacion.ACCIONEXCEL;
 using Aplicacion.ACCIONNOTAS;
+using Aplicacion.ACCIONREPORTES;
 using Aplicacion.ACCIONTAREAS;
 using Aplicacion.Contratos;
 using Aplicacion.Seguridad;
@@ -52,6 +53,7 @@ namespace crmbackend {
             services.AddDbContext<CRMContext> (opt => { opt.UseSqlServer (Configuration.GetConnectionString ("DefaultConnection")); });           
             services.AddMediatR (typeof (ConsultaCampanas.Manejador).Assembly);
             services.AddScoped (typeof (ListarUsuarioPorRol.Manejador));
+
 
             services.AddControllers (opt => {
                 var policy = new AuthorizationPolicyBuilder ().RequireAuthenticatedUser ().Build ();

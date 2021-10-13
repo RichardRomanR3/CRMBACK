@@ -112,6 +112,11 @@ namespace crmbackend.Controllers
         {
             return await _mediator.Send(data);
         }
+         [HttpPost("cuentaCerradasPropias")]
+        public async Task<ActionResult<CONTEO>> ContarCerradas(ContarTareasCerradas.Contar data)
+        {
+            return await _mediator.Send(data);
+        }
 
         [HttpGet("COMENTARIOSDETAREA/{id}")]
         public async Task<ActionResult<List<COMENTARIOSDETAREAS>>> ListarComentarios(Guid id)

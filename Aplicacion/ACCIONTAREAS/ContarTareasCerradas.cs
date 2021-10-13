@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Persistencia;
 
 namespace Aplicacion.ACCIONTAREAS {
-    public class ContarTareasPendientes {
+    public class ContarTareasCerradas {
         public class Contar : IRequest<CONTEO> {
             public string UserName {get;set;}
             public string USUARIOASIGNADO { get; set; }
@@ -25,12 +25,12 @@ namespace Aplicacion.ACCIONTAREAS {
             }
 
             public async Task<CONTEO> Handle (Contar request, CancellationToken cancellationToken) {
-                var cont = await _context.TAREAS.Where (t => t.FECHAVTO.Date <= DateTime.Now.Date && t.COMPLETADO == null && t.UsuarioId == request.USUARIOASIGNADO).CountAsync ();
+                var cont = await _context.TAREAS.Where (t => t.COMPLETADO.Value.Date == DateTime.Now.Date && t.UsuarioId == request.USUARIOASIGNADO).CountAsync ();
                 var cuenta = new CONTEO {
                     USUARIOASIGNADO = request.USUARIOASIGNADO,
                     cuenta = cont
                 };
-                  await _chatHub.Clients.Group(request.UserName).SendAsync("CuentaTareas", cuenta);
+                  await _chatHub.Clients.Group(request.UserName).SendAsync("CuentaTareasCerradas", cuenta);
                   return cuenta;
             }
         }
