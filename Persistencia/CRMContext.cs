@@ -31,6 +31,24 @@ namespace Persistencia {
                 v.Property (v => v.fechaarchivo).HasColumnType ("fechaarchivo");
     
             });
+              modelBuilder.Entity<GRAFICO_TAREAS> (v => {
+                v.HasNoKey ();
+                v.ToView ("GRAFICO_TAREAS");
+                v.Property (v => v.usuario).HasColumnType ("usuario");
+                v.Property (v => v.tareas_pendientes_global).HasColumnType ("tareas_pendientes_global");
+                v.Property (v => v.tareas_cerradas_global).HasColumnType ("tareas_cerradas_global");
+                v.Property (v => v.tareas_pendientes_dia).HasColumnType ("tareas_pendientes_dia");
+                v.Property (v => v.tareas_cerradas_dia).HasColumnType ("tareas_cerradas_dia");
+
+            });
+             modelBuilder.Entity<GRAFICO_CAMPANAS> (v => {
+                v.HasNoKey ();
+                v.ToView ("GRAFICO_CAMPANAS");
+                v.Property (v => v.CAMPANA).HasColumnType ("CAMPANA");
+                v.Property (v => v.CLIENTES).HasColumnType ("CLIENTES");
+            });
+
+
             modelBuilder.Entity<ROLES_PANTALLAS> ()
                 .HasKey (o => new { o.PANTALLAId, o.RoleId });
             base.OnModelCreating (modelBuilder);
@@ -66,5 +84,9 @@ namespace Persistencia {
         public DbSet<V_ARCHIVOS_POSIBLESCLIENTES> V_ARCHIVOS_POSIBLESCLIENTES {get;set;}
 
         public DbSet <COMENTARIOSDETAREAS> COMENTARIOSDETAREAS {get;set;}
+        public DbSet <GRAFICO_TAREAS> GRAFICO_TAREAS {get;set;}
+
+        public DbSet <GRAFICO_CAMPANAS> GRAFICO_CAMPANAS {get;set;}
+
     }
 }

@@ -29,7 +29,7 @@ namespace crmbackend.Controllers {
         }
 
         [HttpGet ("leidopor/{id}")]
-        public async Task<ActionResult<List<V_LEIDO_POR>>> LeidoPor (Guid id) {
+        public async Task<ActionResult<List<DIFUSIONESLEIDAS>>> LeidoPor (Guid id) {
             return await _mediator.Send (new MostrarLeidoPor.Ejecuta { NOTA_ID = id });
         }
 

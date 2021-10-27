@@ -14,5 +14,14 @@ namespace crmbackend.Controllers
         public async Task<ActionResult<List<EVENTOCALENDARIO>>> EVENTOS (string id) {
             return await _mediator.Send (new ConsultarEventosCalendario.Ejecuta{UsuarioId=id});
         }
+
+         [HttpGet ("graficoTareas")]
+        public async Task<ActionResult<List<GRAFICO_TAREAS>>> GRAFICO_TAREAS (string id) {
+            return await _mediator.Send (new ConsultarGraficoDeTareas.Ejecuta());
+        }
+         [HttpGet ("graficoCampanas")]
+        public async Task<ActionResult<List<GRAFICO_CAMPANAS>>> GRAFICO_CAMPANAS (string id) {
+            return await _mediator.Send (new ConsultarGraficoCampanas.Ejecuta());
+        }
     }
 }

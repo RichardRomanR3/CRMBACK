@@ -10,16 +10,19 @@ using Persistencia;
 
 namespace Aplicacion.ACCIONNOTAS {
     public class MostrarLeidoPor {
-        public class Ejecuta : IRequest<List<V_LEIDO_POR>> {
+        public class Ejecuta : IRequest<List<DIFUSIONESLEIDAS>> {
             public Guid NOTA_ID { get; set; }
         }
-        public class Manejador : IRequestHandler<Ejecuta, List<V_LEIDO_POR>> {
+        public class Manejador : IRequestHandler<Ejecuta, List<DIFUSIONESLEIDAS>> {
             private readonly CRMContext _context;
             public Manejador (CRMContext context) {
                 _context = context;
             }
-            public async Task<List<V_LEIDO_POR>> Handle (Ejecuta request, CancellationToken cancellationToken) {
-                var lista = await _context.V_LEIDO_POR.Where (x => x.NOTA_ID == request.NOTA_ID).ToListAsync ();
+
+            public async Task<List<DIFUSIONESLEIDAS>> Handle(Ejecuta request, CancellationToken cancellationToken)
+            {
+                 var nota = await _context.NOTAS.FindAsync(request.NOTA_ID);
+                var lista = await _context.DIFUSIONESLEIDAS.Where (x => x.NOTA == nota).ToListAsync();
                 return lista;
             }
         }
