@@ -25,7 +25,7 @@ namespace crmbackend.Controllers {
             return await _mediator.Send (data);
         }
 
-        [HttpPut ("{id}")]
+        [HttpPatch ("{id}")]
         public async Task<ActionResult<Unit>> Editar (Guid id, EditarCampanas.Ejecuta data) {
             data.CAMPANA_Id = id;
             return await _mediator.Send (data);

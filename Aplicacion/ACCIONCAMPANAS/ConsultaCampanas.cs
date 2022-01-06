@@ -23,7 +23,6 @@ namespace Aplicacion.ACCIONCAMPANAS {
             }
             public async Task<List<CAMPANASDto>> Handle (ListaCampanas request, CancellationToken cancellationToken) {
                 var campanas = await _context.CAMPANAS
-                    .Where(x=>x.ESTADOCAMPANA=="Activo")
                     .Include (x => x.ClientesLista)
                     .Include (x => x.TIPOSCAMPANAS).ToListAsync ();
                 var campanasDto = _mapper.Map<List<CAMPANAS>, List<CAMPANASDto>> (campanas);
